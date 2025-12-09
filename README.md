@@ -27,31 +27,54 @@ eeg/
 
 ### 1. Klonowanie repozytorium
 
+#### Przez SSH (zalecane):
 ```bash
-git clone https://github.com/TWOJA_NAZWA/eeg-microstates.git
-cd eeg-microstates
+git clone git@github.com:szymbierz/eeg_microstates.git
+cd eeg_microstates
 ```
 
-### 2. Tworzenie środowiska wirtualnego
+#### Przez HTTPS (alternatywa):
+```bash
+git clone https://github.com/szymbierz/eeg_microstates.git
+cd eeg_microstates
+```
 
-#### macOS / Linux
+### 2. Konfiguracja środowiska
+
+#### Windows z Conda (używając istniejącego środowiska)
+
+Jeśli masz już środowisko conda w folderze `projekty_naukowe`:
+
+```powershell
+# Aktywuj swoje istniejące środowisko conda
+conda activate nazwa_twojego_srodowiska
+
+# Przejdź do sklonowanego folderu
+cd C:\ścieżka\do\eeg_microstates
+
+# Zainstaluj zależności w istniejącym środowisku
+pip install -r requirements.txt
+```
+
+**Uwaga:** Jeśli nie masz jeszcze środowiska conda, możesz je utworzyć:
+```powershell
+conda create -n projekty_naukowe python=3.11
+conda activate projekty_naukowe
+cd C:\ścieżka\do\eeg_microstates
+pip install -r requirements.txt
+```
+
+#### macOS / Linux (venv)
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-#### Windows (PowerShell)
+#### Windows (venv - alternatywa)
 ```powershell
 python -m venv venv
 .\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-#### Windows (CMD)
-```cmd
-python -m venv venv
-venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 

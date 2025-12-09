@@ -1,0 +1,30 @@
+# config.py.example
+# Skopiuj ten plik jako config.py i dostosuj ścieżki do swojego systemu
+# config.py jest w .gitignore - nie będzie committowany do repo
+
+from pathlib import Path
+import os
+
+# Automatycznie wykryj lokalizację projektu
+PROJECT_ROOT = Path(__file__).parent
+
+# Automatycznie wykryj system operacyjny
+if os.name == 'nt':  # Windows
+    # Windows - dostosuj ścieżkę do swojego systemu
+    DATA_DIR = PROJECT_ROOT / "Dane"
+else:  # macOS/Linux
+    # macOS/Linux
+    DATA_DIR = PROJECT_ROOT / "Dane"
+
+# Ścieżki do podfolderów
+RAW_DIR = DATA_DIR / "raw"
+PROCESSED_DIR = DATA_DIR / "processed"
+
+# Przykładowe ścieżki do plików
+# RAW_FILE = RAW_DIR / "20241017_kp.bdf"
+# PROCESSED_FILE = PROCESSED_DIR / "main_pyprep.fif"
+
+# Przykład użycia w skryptach:
+# from config import RAW_DIR, PROCESSED_DIR
+# d_path = RAW_DIR / "20241017_kp.bdf"
+

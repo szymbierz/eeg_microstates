@@ -79,6 +79,9 @@ manim_eeg/
 # Large files without extension
 Dane/processed/epochs
 
+# Local configuration (user-specific paths)
+config.py
+
 # ====================
 # Keep these small data files
 # ====================
