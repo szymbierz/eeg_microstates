@@ -134,17 +134,17 @@ RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 ```
 
-## 📚 Główne zależności
+## 📚 Main dependencies 
 
-- **MNE-Python** - analiza EEG/MEG
-- **NumPy** - operacje numeryczne
-- **SciPy** - algorytmy naukowe
-- **Matplotlib** - wizualizacje
-- **pycrostates** (opcjonalnie) - analiza mikrostanów
+- **MNE-Python** 
+- **NumPy** 
+- **SciPy** 
+- **Matplotlib** 
 
-## 🎓 Użycie
 
-### Klasa Microstates
+## 🎓 Usage
+
+### Microstates Class
 
 ```python
 from scripts.microstates.class_microstates import Microstates
@@ -162,17 +162,16 @@ microstates.fit(peaks_data)
 labels = microstates.predict(eeg_data)
 ```
 
-## 📝 Notatki
+## 📝 Notes
 
 - Projekt pisany na **macOS**, testowany na **Windows**
 - Używaj `pathlib.Path` zamiast stringów dla cross-platform kompatybilności
 - Pamiętaj o aktualizacji montażu elektrod jeśli używasz innego sprzętu
 
-## 👨‍🔬 Autor
+## 👨‍🔬 Author
 
-[Twoje imię/nick]
+Szymon Bierzanowski
 
-## 📄 Licencja
-
-[Wybierz licencję - np. MIT, GPL]
+## 📄 License
+MIT
 
