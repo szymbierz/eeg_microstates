@@ -1,0 +1,77 @@
+from class_microstates import Microstates 
+import numpy as np
+
+# Przygotowanie przykładowych danych
+# peaks: (n_channels, n_peaks)
+n_channels = 19
+n_peaks = 100
+peaks_data = np.random.rand(n_channels, n_peaks) * 10 - 5 # Losowe dane EEG
+
+# Parametry dla klasy Microstates
+n_microstates = 5
+max_iters = 100
+tol = 1e-4
+
+# Utworzenie instancji klasy Microstates
+microstates_model = Microstates(
+    peaks=peaks_data,
+    n_microstates=n_microstates,
+    max_iters=max_iters,
+    tol=tol
+)
+
+# Testowanie inicjalizacji centroidów
+print("Testowanie inicjalizacji centroidów...")
+microstates_model.centroids_initialisation(peaks_data)
+print("Kształt zainicjowanych centroidów:", microstates_model.centroids.shape)
+print("Centroidy (pierwsze 3):", microstates_model.centroids[:3,:3]) # Wyświetlamy tylko fragment dla czytelności
+print("-" * 30)
+
+# Testowanie metody fit
+print("Testowanie metody fit...")
+microstates_model.fit(peaks_data)
+print("Kształt wyuczonych centroidów po fit:", microstates_model.centroids.shape)
+print("Etykiety po fit (pierwsze 10):", microstates_model.labels[:10])
+print("-" * 30)
+
+# Testowanie metody predict
+print("Testowanie metody predict...")
+# Przykładowe dane do predykcji (mogą być te same co peaks_data lub nowe)
+data_to_predict = np.random.rand(n_channels, 50) * 10 - 5
+predicted_labels = microstates_model.predict(data_to_predict)
+print("Kształt danych do predykcji:", data_to_predict.shape)
+print("Etykiety predykcji (pierwsze 10):", predicted_labels[:10])
+print("Unikalne etykiety predykcji:", np.unique(predicted_labels))
+print("-" * 30)
+
+# Testowanie obsługi błędów
+print("Testowanie obsługi błędów...")
+try:
+    # Test błędu typu danych dla peaks
+    Microstates(peaks="string", n_microstates=2, max_iters=10).centroids_initialisation(peaks="string")
+except TypeError as e:
+    print(f"Złapano oczekiwany błąd typu danych: {e}")
+
+try:
+    # Test błędu wymiarów danych dla peaks
+    Microstates(peaks=np.array([1,2,3]), n_microstates=2, max_iters=10).centroids_initialisation(peaks=np.array([1,2,3]))
+except ValueError as e:
+    print(f"Złapano oczekiwany błąd wymiarów: {e}")
+
+try:
+    # Test błędu niezgodności liczby kanałów w predict
+    model_for_error_test = Microstates(peaks=peaks_data, n_microstates=n_microstates, max_iters=max_iters, tol=tol)
+    model_for_error_test.fit(peaks_data)
+    model_for_error_test.predict(np.random.rand(n_channels + 1, 10))
+except ValueError as e:
+    print(f"Złapano oczekiwany błąd niezgodności kanałów: {e}")
+
+try:
+    # Test błędu niewyuczonego modelu w predict
+    model_for_error_test_no_fit = Microstates(peaks=peaks_data, n_microstates=n_microstates, max_iters=max_iters, tol=tol)
+    model_for_error_test_no_fit.predict(data_to_predict)
+except RuntimeError as e:
+    print(f"Złapano oczekiwany błąd niewyuczonego modelu: {e}")
+
+print("Testy zakończone.")
+

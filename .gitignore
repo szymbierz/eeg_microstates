@@ -1,0 +1,91 @@
+# ====================
+# EEG Data Files (too large for GitHub)
+# ====================
+# Raw EEG data
+Dane/raw/*.bdf
+Dane/raw/*.edf
+
+# Large processed files (>100MB)
+Dane/processed/*.fif
+Dane/processed/*.edf
+Dane/processed/*.set
+Dane/processed/20241017_kp_cleaned.edf
+
+# ====================
+# Python
+# ====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+main/
+pyprep_env/
+venv/
+env/
+.venv/
+ENV/
+
+# ====================
+# Jupyter Notebook
+# ====================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ====================
+# IDE / Editors
+# ====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ====================
+# Project specific
+# ====================
+# Thesis/LaTeX files
+magisterka/
+
+# PDF Research Assistant (separate project)
+pdf_research_assistant/
+pdf_research_assistant.zip
+
+# Manim animations
+manim_eeg/
+
+# GIF/PNG outputs (można odtworzyć)
+*.gif
+*.png
+
+# Large files without extension
+Dane/processed/epochs
+
+# ====================
+# Keep these small data files
+# ====================
+# Negate to include small processed files
+!Dane/processed/*.asc
+!Dane/processed/*.npy
+!Dane/processed/ica_try_1
+!Dane/processed/microstate_class_test
+!scripts/microstates/*.npy
+
